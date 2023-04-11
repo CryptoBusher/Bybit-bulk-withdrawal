@@ -63,9 +63,6 @@ if __name__ == "__main__":
     with open(f'data/wallet_addresses.txt') as file:
         wallet_addresses = [line.rstrip() for line in file]
 
-    account_asset(api_key=config["bybit_api_key"], api_secret=config["bybit_api_sign"],
-                  endpoint='https://api.bybit.com').query_withdraw_records()
-
     confirm_action = input(f'Going to withdraw {config["withdraw_min_amount"]} - {config["withdraw_max_amount"]} '
                            f'{config["withdraw_coin_ticker"]} in {config["withdraw_network"]} network (random digits '
                            f'{config["random_min_amount_digits"]} - {config["random_max_amount_digits"]}) to '
