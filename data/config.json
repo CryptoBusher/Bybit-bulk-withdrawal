@@ -10,4 +10,5 @@
   "random_max_amount_digits": 9,
   "withdraw_min_delay_sec": 2000,
   "withdraw_max_delay_sec": 10000
+  "shuffle_wallet_addresses": true
 }
