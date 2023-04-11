@@ -5,7 +5,7 @@ Bybit API docs: https://bybit-exchange.github.io/docs/v5/intro
 
 import json
 from sys import stderr, exit
-from random import randint, uniform
+from random import randint, uniform, shuffle
 from time import sleep
 
 from pybit.account_asset import HTTP as account_asset
@@ -61,7 +61,10 @@ if __name__ == "__main__":
     with open('data/config.json', 'r') as f:
         config = json.loads(f.read())
     with open(f'data/wallet_addresses.txt') as file:
-        wallet_addresses = [line.rstrip() for line in file]
+        wallet_addresses = [line.strip() for line in file]
+
+    if config["shuffle_wallet_addresses"]:
+        shuffle(wallet_addresses)
 
     confirm_action = input(f'Going to withdraw {config["withdraw_min_amount"]} - {config["withdraw_max_amount"]} '
                            f'{config["withdraw_coin_ticker"]} in {config["withdraw_network"]} network (random digits '
