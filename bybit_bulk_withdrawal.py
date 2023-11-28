@@ -43,7 +43,7 @@ def start_batch_withdrawal(_config: dict, _wallet_addresses: list):
         try:
             result = withdraw(_config["bybit_api_key"], _config["bybit_api_sign"], _config["withdraw_coin_ticker"],
                               _config["withdraw_network"], wallet, amount, _config["account_type"])
-            if result["ret_msg"] == 'OK':
+            if result["ret_msg"] == 'success':
                 logger.info(f'{wallet} - sent tokens, id: {result["result"]["id"]}')
             else:
                 logger.error(f'{wallet} - failed to send tokens, response: {result}')
