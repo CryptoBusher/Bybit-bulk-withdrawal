@@ -14,7 +14,7 @@
 4. Открываем файл "data/wallet_addresses.txt" и вставляем свои кошельки, на которые будем получать монеты (каждый кошелек с новой строки).
 5. Создаем API ключ на бирже Bybit (system-generated API keys). Даем ключу Read-Write permissions, указываем свой IP адрес, даем право на Withdrawal.
 6. Добавляем свои кошельки в Whitelist на бирже Bybit (Account and security -> Withdrawal security -> Withdrawal address whitelist). Без этого нельзя производить выводы через API. Можно накидать скрипт в Zennoposter или на BAS, чтоб не делать это руками.
-7. Закидываем деньги на Bybit Unified Trading Account
+7. Закидываем деньги на Bybit Funding Account
 8. Открываем файл "data/config.json" и забиваем настройки:
    - _**bybit_api_key**_ - API ключ, получаемый в разделе API на бирже Bybit
    - _**bybit_api_sign**_ - ключ, получаемый при создании API ключа на бирже Bybit
