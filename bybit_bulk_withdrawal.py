@@ -7,8 +7,9 @@ import json
 from sys import stderr, exit
 from random import randint, uniform, shuffle
 from time import sleep
+from datetime import datetime
 
-from pybit.account_asset import HTTP as account_asset
+from pybit.unified_trading import HTTP
 from loguru import logger
 from pyfiglet import Figlet
 
@@ -25,25 +26,41 @@ class WithdrawException(Exception):
     pass
 
 
-def withdraw(api_key: str, api_secret: str, coin: str, chain: str, address: str, amount: str, account_type: str):
+def withdraw(session: HTTP, coin: str, chain: str, address: str, amount: str):
     try:
-        return account_asset(api_key=api_key, api_secret=api_secret, endpoint='https://api.bybit.com') \
-            .withdraw(coin=coin, chain=chain, address=address, amount=str(amount), account_type=account_type)
-
+        return session.withdraw(
+            coin=coin,
+            chain=chain,
+            address=address,
+            amount=amount,
+            timestamp=int(datetime.now().timestamp() * 1000)
+        )
     except Exception as e:
         raise WithdrawException(e)
 
 
 def start_batch_withdrawal(_config: dict, _wallet_addresses: list):
+    session = HTTP(
+        api_key=_config["bybit_api_key"],
+        api_secret=_config["bybit_api_sign"],
+        testnet=False,
+    )
+
     for i, wallet in enumerate(_wallet_addresses):
         amount_digits = randint(_config["random_min_amount_digits"], _config["random_max_amount_digits"])
         amount = str(round(uniform(_config["withdraw_min_amount"], _config["withdraw_max_amount"]), amount_digits))
 
         logger.info(f'{wallet} - sending {amount} {_config["withdraw_coin_ticker"]}')
         try:
-            result = withdraw(_config["bybit_api_key"], _config["bybit_api_sign"], _config["withdraw_coin_ticker"],
-                              _config["withdraw_network"], wallet, amount, _config["account_type"])
-            if result["ret_msg"] == 'success':
+            result = withdraw(
+                session,
+                _config["withdraw_coin_ticker"],
+                _config["withdraw_network"],
+                wallet,
+                amount
+            )
+
+            if result["retMsg"] == 'success':
                 logger.info(f'{wallet} - sent tokens, id: {result["result"]["id"]}')
             else:
                 logger.error(f'{wallet} - failed to send tokens, response: {result}')

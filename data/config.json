@@ -3,7 +3,6 @@
   "bybit_api_sign": "",
   "withdraw_coin_ticker": "BNB",
   "withdraw_network": "BSC",
-  "account_type": "SPOT",
   "withdraw_min_amount": 0.1,
   "withdraw_max_amount": 0.25,
   "random_min_amount_digits": 3,
