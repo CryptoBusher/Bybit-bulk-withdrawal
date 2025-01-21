@@ -11,11 +11,11 @@
 1. Устанавливаем Python 3.10.
 2. Качаем репозиторий.
 3. Открываем терминал, переходим в папку с файлами и пишем команду "pip install -r requirements.txt".
-4. Открываем файл "data/wallet_addresses.txt" и вставляем свои кошельки, на которые будем получать монеты (каждый кошелек с новой строки).
+4. Переименовываем файл "data/_wallet_addresses.txt" на "data/wallet_addresses.txt", открываем файл и вставляем свои кошельки, на которые будем получать монеты (каждый кошелек с новой строки).
 5. Создаем API ключ на бирже Bybit (system-generated API keys). Даем ключу Read-Write permissions, указываем свой IP адрес, даем право на Withdrawal.
 6. Добавляем свои кошельки в Whitelist на бирже Bybit (Account and security -> Withdrawal security -> Withdrawal address whitelist). Без этого нельзя производить выводы через API. Можно накидать скрипт в Zennoposter или на BAS, чтоб не делать это руками.
 7. Закидываем деньги на Bybit Funding Account
-8. Открываем файл "data/config.json" и забиваем настройки:
+8. Переименовываем файл "data/_config.json" на "data/config.json", открываем файл и забиваем настройки:
    - _**bybit_api_key**_ - API ключ, получаемый в разделе API на бирже Bybit
    - _**bybit_api_sign**_ - ключ, получаемый при создании API ключа на бирже Bybit
    - _**withdraw_coin_ticker**_ - тикер монеты, которую будем выводить (можно посмотреть при добавлении адресов в вайтлист)

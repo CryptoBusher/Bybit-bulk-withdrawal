@@ -1,0 +1,13 @@
+{
+  "bybit_api_key": "",
+  "bybit_api_sign": "",
+  "withdraw_coin_ticker": "BNB",
+  "withdraw_network": "BSC",
+  "withdraw_min_amount": 0.1,
+  "withdraw_max_amount": 0.25,
+  "random_min_amount_digits": 3,
+  "random_max_amount_digits": 9,
+  "withdraw_min_delay_sec": 2000,
+  "withdraw_max_delay_sec": 10000,
+  "shuffle_wallet_addresses": true
+}
